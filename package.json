@@ -1,0 +1,23 @@
+{
+  "name": "short-url",
+  "version": "1.0.0",
+  "description": "short url service",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joegrundman/super-sniffle.git"
+  },
+  "keywords": [
+    "short",
+    "url"
+  ],
+  "author": "Joegrundman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joegrundman/super-sniffle/issues"
+  },
+  "homepage": "https://github.com/Joegrundman/super-sniffle#readme"
+}
