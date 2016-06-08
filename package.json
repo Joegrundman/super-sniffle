@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Joegrundman/super-sniffle/issues"
   },
-  "homepage": "https://github.com/Joegrundman/super-sniffle#readme"
+  "homepage": "https://github.com/Joegrundman/super-sniffle#readme",
+  "dependencies": {
+    "mongodb": "^2.1.21"
+  }
 }
