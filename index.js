@@ -3,7 +3,27 @@ var mongo = require('mongodb').MongoClient;
 var connectionString = 'mongodb://localhost:27017/shorturl';
 var port = process.env.PORT || 3000;
 
-var info = 'There will be an introduction to the purpose of the site';
+var info = 
+'<html>' +
+'<head>'+
+'<style>' +
+'h1, h3 {font-family: sans-serif}' +
+'code {background-color: #ccc; color: tomato}'
+'</style>'+
+'</head>' +
+'<body>' +
+'<h1> URL Shortener Microservice</h1>' +
+'<br>' +
+'<h3>To request a new short url, add the url as a parameter to the request</h3>' +
+'<code>https://rs-tiny.herokuapp.com/www.google.com</code>' +
+'<h3>Will output</h3>' +
+'<code>{ "original_url":"http://www.google.com", "short_url":"https://rs-tiny.herokuapp.com/Fe" }</code>' +
+'<h3>Usage</h3>' +
+'<code>https://rs-tiny.herokuapp.com/Fe</code>' +
+'<h3>Will redirect to</h3>' +
+'<code>http://www.google.com</code>' +
+'</body>'+
+'</html>'
 
 var convert = function (num) {
     var base62 = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -49,7 +69,7 @@ mongo.connect(connectionString, function (err, db) {
                             if (err) throw err
                             db.collection('urls').insert({
                                 original_url: thisUrl,
-                                short_url: convert(1000 + count)
+                                short_url: 'https://rs-tiny.herokuapp.com/' + (convert(1000 + count))
                             }, function (err, data) {
                                 if (err) throw err;
                                 db.collection('urls').findOne({ original_url: thisUrl }, { _id: 0 }, function(err, doc) {
