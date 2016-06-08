@@ -1,6 +1,6 @@
 var http = require('http');
 var mongo = require('mongodb').MongoClient;
-var connectionString = 'mongodb://localhost:27017/shorturl';
+var connectionString = process.env.MONGO || 'mongodb://localhost:27017/shorturl';
 var port = process.env.PORT || 3000;
 
 var info = 
@@ -69,7 +69,7 @@ mongo.connect(connectionString, function (err, db) {
                             if (err) throw err
                             db.collection('urls').insert({
                                 original_url: thisUrl,
-                                short_url: 'https://rs-tiny.herokuapp.com/' + (convert(1000 + count))
+                                short_url: 'https://rs-tiny.herokuapp.com/' + (convert(100 + count))
                             }, function (err, data) {
                                 if (err) throw err;
                                 db.collection('urls').findOne({ original_url: thisUrl }, { _id: 0 }, function(err, doc) {
