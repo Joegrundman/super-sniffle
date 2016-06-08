@@ -78,7 +78,7 @@ mongo.connect(connectionString, function (err, db) {
                                 db.collection('urls').findOne({ original_url: thisUrl }, { _id: 0 }, function (err, doc) {
                                     if (err) throw err;
                                     res.writeHead(200, { 'Content-Type': 'text/plain' });
-                                    res.end(JSON.stringify(JSON.stringify(doc)));
+                                    res.end(JSON.stringify(doc));
                                 })
                             })
                         })
