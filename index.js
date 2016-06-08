@@ -3,27 +3,27 @@ var mongo = require('mongodb').MongoClient;
 var connectionString = process.env.MONGO || 'mongodb://localhost:27017/shorturl';
 var port = process.env.PORT || 3000;
 
-var info = 
-'<html>' +
-'<head>'+
-'<style>' +
-'h1, h3 {font-family: sans-serif}' +
-'code {background-color: #ccc; color: tomato}'
-'</style>'+
-'</head>' +
-'<body>' +
-'<h1> URL Shortener Microservice</h1>' +
-'<br>' +
-'<h3>To request a new short url, add the url as a parameter to the request</h3>' +
-'<code>https://rs-tiny.herokuapp.com/www.google.com</code>' +
-'<h3>Will output</h3>' +
-'<code>{ "original_url":"http://www.google.com", "short_url":"https://rs-tiny.herokuapp.com/Fe" }</code>' +
-'<h3>Usage</h3>' +
-'<code>https://rs-tiny.herokuapp.com/Fe</code>' +
-'<h3>Will redirect to</h3>' +
-'<code>http://www.google.com</code>' +
-'</body>'+
-'</html>'
+var info = '<html>' +
+            '<head>'+
+            '<style>' +
+            'body { margin-left: 5em; margin-top: 5em;}' +
+            'h1, h3 {font-family: sans-serif;}' +
+            'code {background-color: #ddd; color: #de1345; padding: 5px; border-radius: 3px;}'+
+            '</style>'+
+            '</head>' +
+            '<body>' +
+            '<h1> URL Shortener Microservice</h1>' +
+            '<br>' +
+            '<h3>To request a new short url, add the url as a parameter to the request</h3>' +
+            '<code>https://rs-tiny.herokuapp.com/www.google.com</code>' +
+            '<h3>Will output</h3>' +
+            '<code>{ "original_url":"http://www.google.com", "short_url":"https://rs-tiny.herokuapp.com/Fe" }</code>' +
+            '<h3>Usage</h3>' +
+            '<code>https://rs-tiny.herokuapp.com/Fe</code>' +
+            '<h3>Will redirect to</h3>' +
+            '<code>http://www.google.com</code>' +
+            '</body>'+
+            '</html>';
 
 var convert = function (num) {
     var base62 = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -43,11 +43,10 @@ var convert = function (num) {
 
 mongo.connect(connectionString, function (err, db) {
     if (err) throw err;
-    console.log('mongo connected on:', connectionString);
 
     http.createServer(function (req, res) {
         if (req.url === '/') {
-            res.writeHead(200, { 'Content-Type': 'text/plain' });
+            res.writeHead(200, { 'Content-Type': 'text/html' });
             res.end(info);
         } else {
             var thisUrl = req.url.replace(/^\//, "")
