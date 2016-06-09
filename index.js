@@ -51,7 +51,7 @@ mongo.connect(connectionString, function (err, db) {
             var thisUrl = req.url.replace(/^\//, "")
 
             if (!/[\.\/]/.test(thisUrl)) {
-                db.collection('urls').findOne({ short_url: thisUrl }, { _id: 0 }, function (err, doc) {
+                db.collection('urls').findOne({ short_url: "https://rs-tiny.herokuapp.com/" + thisUrl }, { _id: 0 }, function (err, doc) {
                     if (err) throw err;
                     if (!doc) {
                         res.writeHead(404, { 'Content-Type': 'text/plain' })
