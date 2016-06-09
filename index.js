@@ -29,8 +29,8 @@ var convert = function (num) {
     var base62 = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     var i = 0;
     var powers = []
-    while (Math.pow(64, i) <= num) {
-        powers.unshift(Math.pow(64, i));
+    while (Math.pow(62, i) <= num) {
+        powers.unshift(Math.pow(62, i));
         i++
     }
     return powers.map(function (n) {
@@ -72,7 +72,7 @@ mongo.connect(connectionString, function (err, db) {
                             if (err) throw err
                             db.collection('urls').insert({
                                 original_url: thisUrl,
-                                short_url: 'https://rs-tiny.herokuapp.com/' + (convert(100 + count))
+                                short_url: 'https://rs-tiny.herokuapp.com/' + (convert(150 + count))
                             }, function (err, data) {
                                 if (err) throw err;
                                 db.collection('urls').findOne({ original_url: thisUrl }, { _id: 0 }, function (err, doc) {
