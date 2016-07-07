@@ -22,6 +22,9 @@ var info = '<html>' +
     '<code>https://rs-tiny.herokuapp.com/Fe</code>' +
     '<h3>Will redirect to</h3>' +
     '<code>http://www.google.com</code>' +
+    '<br/>' +
+    '<br/>' +
+    '<h3>Joe Grundman 2016</h3>' +
     '</body>' +
     '</html>';
 
@@ -67,9 +70,11 @@ mongo.connect(connectionString, function (err, db) {
                     if (doc) {
                         res.writeHead(200, { 'Content-Type': 'text/plain' });
                         res.end(JSON.stringify(doc))
+                        
                     } else {
                         db.collection('urls').count({}, function (err, count) {
                             if (err) throw err
+                            
                             db.collection('urls').insert({
                                 original_url: thisUrl,
                                 short_url: 'https://rs-tiny.herokuapp.com/' + (convert(150 + count))
